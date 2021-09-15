@@ -3,8 +3,9 @@ import Banner from '../components/Banner';
 import Header from '../components/Header';
 import LocationCard from '../components/LocationCard';
 import HomeCard from '../components/HomeCard';
+import MoreInfoCard from '../components/MoreInfoCard';
 
-export default function Home({ locationData, homeData }) {
+export default function Home({ locationData, homeData, moreInfoData }) {
   const renderNearbyLocationData = locationData.map(({ img, location, distance }) => {
     return <LocationCard key={location} img={img} location={location} distance={distance} />;
   });
@@ -34,6 +35,14 @@ export default function Home({ locationData, homeData }) {
             {renderHomeData}
           </div>
         </section>
+        <section>
+          <MoreInfoCard
+            img={moreInfoData.img}
+            title={moreInfoData.title}
+            description={moreInfoData.description}
+            buttonText={moreInfoData.buttonText}
+          />
+        </section>
       </main>
     </div>
   );
@@ -45,10 +54,18 @@ export async function getStaticProps() {
   const locationData = await locationDataResponse.json();
   const homeData = await homeDataResponse.json();
 
+  const moreInfoData = {
+    img: 'https://links.papareact.com/4cj',
+    title: 'The Greatest Outdoors',
+    description: 'Wishlists curated by Airbnb',
+    buttonText: 'Get Inspired',
+  };
+
   return {
     props: {
       locationData,
       homeData,
+      moreInfoData,
     },
   };
 }

@@ -30,7 +30,9 @@ export default function Home({ locationData, homeData }) {
         </section>
         <section>
           <h2 className='text-4xl font-semibold py-8'>Live Anywhere</h2>
-          {renderHomeData}
+          <div className='flex space-x-3 overflow-scroll scrollbar-hide p-3 -ml-3'>
+            {renderHomeData}
+          </div>
         </section>
       </main>
     </div>

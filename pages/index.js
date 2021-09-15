@@ -4,6 +4,7 @@ import Header from '../components/Header';
 import LocationCard from '../components/LocationCard';
 import HomeCard from '../components/HomeCard';
 import MoreInfoCard from '../components/MoreInfoCard';
+import Footer from '../components/Footer';
 
 export default function Home({ locationData, homeData, moreInfoData }) {
   const renderNearbyLocationData = locationData.map(({ img, location, distance }) => {
@@ -44,6 +45,7 @@ export default function Home({ locationData, homeData, moreInfoData }) {
           />
         </section>
       </main>
+      <Footer />
     </div>
   );
 }

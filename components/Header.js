@@ -24,6 +24,18 @@ function Header() {
     key: 'selection',
   };
 
+  const search = () => {
+    router.push({
+      pathname: '/search',
+      query: {
+        location: searchInput,
+        startDate: startDate.toISOString(),
+        endDate: endDate.toISOString(),
+        numbersOfGuests,
+      },
+    });
+  };
+
   const resetInput = () => {
     setSearchInput('');
   };
@@ -84,7 +96,9 @@ function Header() {
             <button className='flex-grow text-gray-500' onClick={resetInput}>
               Cancel
             </button>
-            <button className='flex-grow text-red-500'>Search</button>
+            <button onClick={search} className='flex-grow text-red-500'>
+              Search
+            </button>
           </div>
         </div>
       )}

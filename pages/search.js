@@ -14,6 +14,22 @@ function search({ searchResult }) {
     return `${start} - ${end}`;
   };
 
+  const renderSearchResult = searchResult.map(
+    ({ img, location, title, description, star, price, total }) => {
+      return (
+        <InfoCard
+          img={img}
+          location={location}
+          title={title}
+          description={description}
+          star={star}
+          price={price}
+          total={total}
+        />
+      );
+    }
+  );
+
   return (
     <div className='h-screen'>
       <Header placeholder={`${location} | ${range} | ${numbersOfGuests}`} />

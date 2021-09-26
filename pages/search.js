@@ -18,6 +18,7 @@ function search({ searchResult }) {
     ({ img, location, title, description, star, price, total }) => {
       return (
         <InfoCard
+          key={img}
           img={img}
           location={location}
           title={title}

@@ -1,12 +1,13 @@
 import Footer from '../components/Footer';
 import Header from '../components/Header';
-import { useRouter } from 'next/dist/client/router';
+import InfoCard from '../components/InfoCard';
+import { useRouter } from 'next/router';
 import { format } from 'date-fns';
 
 function search({ searchResult }) {
   const router = useRouter();
 
-  const { location, startDate, endDate, numbersOfGuests } = router.query();
+  const { location, startDate, endDate, numbersOfGuests } = router.query;
 
   const formatDate = (startDate, endDate) => {
     const start = format(new Date(startDate), 'dd MMMM yy');
@@ -33,7 +34,9 @@ function search({ searchResult }) {
 
   return (
     <div className='h-screen'>
-      <Header placeholder={`${location} | ${range} | ${numbersOfGuests}`} />
+      <Header
+        placeholder={`${location} | ${formatDate(startDate, endDate)} | ${numbersOfGuests}`}
+      />
 
       <main className='flex'>
         <section className='flex-grow pt-14 px-6'>
@@ -48,6 +51,7 @@ function search({ searchResult }) {
             <p className='button'>Rooms of Beds</p>
             <p className='button'>More Filters</p>
           </div>
+          <div className='flex flex-col'>{renderSearchResult}</div>
         </section>
       </main>
 

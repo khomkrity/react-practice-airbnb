@@ -1,6 +1,7 @@
 import Footer from '../components/Footer';
 import Header from '../components/Header';
 import InfoCard from '../components/InfoCard';
+import Map from '../components/Map';
 import { useRouter } from 'next/router';
 import { format } from 'date-fns';
 
@@ -52,6 +53,9 @@ function search({ searchResult }) {
             <p className='button'>More Filters</p>
           </div>
           <div className='flex flex-col'>{renderSearchResult}</div>
+        </section>
+        <section className='hidden xl:inline-flex xl:min-w-[600px]'>
+          <Map searchResult={searchResult} />
         </section>
       </main>
 

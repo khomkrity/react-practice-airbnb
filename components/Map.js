@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import ReactMapGL from 'react-map-gl';
+import ReactMapGL, { Marker, Popup } from 'react-map-gl';
 import { getCenter } from 'geolib';
 
 function Map({ searchResult }) {
@@ -20,12 +20,24 @@ function Map({ searchResult }) {
     zoom: 10,
   });
 
+  const renderMarker = searchResult.map(result => {
+    return (
+      <div key={result.long}>
+        <Marker longitude={result.long} latitude={result.lat} offsetLeft={-20} offsetTop={-10}>
+          <p className='cursor-pointer text-2xl animate-bounce'>📌</p>
+        </Marker>
+      </div>
+    );
+  });
+
   return (
     <ReactMapGL
       mapStyle='mapbox://styles/omekrit/cku6zjqwk1wjr18r03c2ltdpu'
       mapboxApiAccessToken={process.env.mapbox_key}
       {...viewport}
-      onViewportChange={nextViewport => setViewport(nextViewport)}></ReactMapGL>
+      onViewportChange={nextViewport => setViewport(nextViewport)}>
+      {renderMarker}
+    </ReactMapGL>
   );
 }
 

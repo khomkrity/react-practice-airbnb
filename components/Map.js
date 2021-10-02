@@ -19,13 +19,31 @@ function Map({ searchResult }) {
     longitude: center.longitude,
     zoom: 10,
   });
+  const [selectedLocation, setSelectedLocation] = useState({});
 
   const renderMarker = searchResult.map(result => {
     return (
       <div key={result.long}>
         <Marker longitude={result.long} latitude={result.lat} offsetLeft={-20} offsetTop={-10}>
-          <p className='cursor-pointer text-2xl animate-bounce'>📌</p>
+          <p
+            role='img'
+            aria-label='push-pin'
+            className='cursor-pointer text-2xl animate-bounce'
+            onClick={() => setSelectedLocation(result)}>
+            📌
+          </p>
         </Marker>
+        {selectedLocation.long === result.long ? (
+          <Popup
+            latitude={result.lat}
+            longitude={result.long}
+            closeOnClick={true}
+            onClose={() => setSelectedLocation({})}>
+            {result.title}
+          </Popup>
+        ) : (
+          false
+        )}
       </div>
     );
   });
